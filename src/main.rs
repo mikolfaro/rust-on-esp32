@@ -1,5 +1,13 @@
+mod wifi;
+
+use esp_idf_hal::prelude::Peripherals;
+use esp_idf_svc::{
+    eventloop::EspSystemEventLoop, nvs::EspDefaultNvsPartition, timer::EspTaskTimerService,
+};
 use esp_idf_sys as _; // If using the `binstart` feature of `esp-idf-sys`, always keep this module imported
 use log::*;
+
+use crate::wifi::wifi;
 
 fn main() {
     // It is necessary to call this function once. Otherwise some patches to the runtime
@@ -8,5 +16,16 @@ fn main() {
     // Bind the log crate to the ESP Logging facilities
     esp_idf_svc::log::EspLogger::initialize_default();
 
-    info!("Hello, world!");
+    info!("Hello World!");
+
+    let peripherals = Peripherals::take().unwrap();
+    let sysloop = EspSystemEventLoop::take().unwrap();
+    let timer_service = EspTaskTimerService::new().unwrap();
+    let _wifi = wifi(
+        peripherals.modem,
+        sysloop,
+        Some(EspDefaultNvsPartition::take().unwrap()),
+        timer_service,
+    )
+    .unwrap();
 }
