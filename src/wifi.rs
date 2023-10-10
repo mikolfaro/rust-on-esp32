@@ -4,7 +4,6 @@ use esp_idf_hal::modem::Modem;
 use esp_idf_hal::peripheral::Peripheral;
 use esp_idf_svc::eventloop::EspSystemEventLoop;
 use esp_idf_svc::nvs::{EspNvsPartition, NvsDefault};
-use esp_idf_svc::ping::EspPing;
 use esp_idf_svc::timer::{EspTimerService, Task};
 use esp_idf_svc::wifi::{AsyncWifi, EspWifi};
 use log::info;
