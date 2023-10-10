@@ -1,5 +1,5 @@
 [package]
-name = "rust-on-esp32-adding-wifi"
+name = "rust-on-esp32"
 version = "0.1.0"
 authors = ["Mikol Faro <mikol.faro@gmail.com>"]
 edition = "2021"
