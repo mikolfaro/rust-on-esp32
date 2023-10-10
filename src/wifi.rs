@@ -33,13 +33,6 @@ pub fn wifi(
 
     println!("Wifi DHCP info: {:?}", ip_info);
 
-    EspPing::default().ping(
-        ip_info.subnet.gateway,
-        &embedded_svc::ping::Configuration {
-            count: 50,
-            ..Default::default()
-        },
-    )?;
     Ok(wifi)
 }
 
